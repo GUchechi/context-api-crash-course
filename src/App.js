@@ -1,33 +1,23 @@
-import { useReducer } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-
-const reducer = (state, action) =>  {
-  switch (action.type) {
-    case "increment":
-      return{ count : state.count + 1, showText : state.showText}
-    case "toggleShowText":
-      return { count : state.count, showText: !state.showText}
-      default: 
-        return state;
-    }
-}
+import axios from 'axios';
 
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, {count : 0, showText : true});
+
+  const [data, setData] = useState("")
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/photos").then((response) => {
+      setData(response.data[0].title)
+      console.log('API WAS CALLED')
+    })
+  }, [])
 
   return (
     <div className="App">
-      <h1>{state.count}</h1>
+      <h1>Hello world : {data}</h1>
 
-      <button
-        onClick={() => {
-          dispatch({ type: 'increment'})
-          dispatch({ type: 'toggleShowText'})
-        }}
-      >Click here</button>
-
-      { state.showText && <p>This is a text</p>}
     </div>
   );
 }
