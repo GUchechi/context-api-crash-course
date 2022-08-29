@@ -4,7 +4,7 @@ import Button from './Components/Button';
 
 function App() {
   
-  const buttonRef = useRef(null);
+  const buttonRef = useRef(null)
 
   return (
     <div className="App">
