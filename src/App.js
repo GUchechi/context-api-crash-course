@@ -1,22 +1,19 @@
 import React, { useRef } from 'react';
 import './App.css';
+import Button from './Components/Button';
 
 function App() {
-  const inputRef = useRef(null);
-
-  const onClick = () => {
-    // console.log(inputRef.current.value);
-
-    inputRef.current.focus();
-    inputRef.current.value = "";
-  }
+  
+  const buttonRef = useRef(null);
 
   return (
     <div className="App">
-      <h1>Pedro</h1>
-      <input type="text" placeholder="Ex..." ref={inputRef} />
-      <button onClick={onClick}>Change Name</button>
-
+      <button
+         onClick = {() => {
+          buttonRef.current.alterToggle();
+         }}
+        >Button from Parent</button> 
+      <Button  ref={buttonRef}/>
     </div>
   );
 }
