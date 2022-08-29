@@ -8,6 +8,7 @@ function App() {
     // console.log(inputRef.current.value);
 
     inputRef.current.focus();
+    inputRef.current.value = "";
   }
 
   return (
