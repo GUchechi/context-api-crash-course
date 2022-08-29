@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import './App.css';
-import axios from 'axios';
-
 
 function App() {
+  const inputRef = useRef(null);
 
-  const [data, setData] = useState("")
-  const [count, setCount] = useState(0)
+  const onClick = () => {
+    // console.log(inputRef.current.value);
 
-  const handler = () => {
-    setCount(count + 1);
+    inputRef.current.focus();
   }
-
-  useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/photos").then((response) => {
-      setData(response.data[0].title)
-      console.log('API WAS CALLED')
-    });
-  }, [count])
 
   return (
     <div className="App">
-      <h1>Hello world : {data}</h1>
-      <h1>{count}</h1>
-
-      <button onClick={handler}>Click</button>
+      <h1>Pedro</h1>
+      <input type="text" placeholder="Ex..." ref={inputRef} />
+      <button onClick={onClick}>Change Name</button>
 
     </div>
   );
